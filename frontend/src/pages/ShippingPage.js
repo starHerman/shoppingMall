@@ -21,7 +21,7 @@ const ShippingPage = ({history}) => {
             
            <Row className="justify-content-center">
                <Col md={6}>
-                   <CheckoutSteps step1 step2></CheckoutSteps>
+                   <CheckoutSteps step1 ></CheckoutSteps>
                    <h1>Shipping</h1>
                     <Form onSubmit={submitHandeler}>
                         <Form.Group controlId="address">

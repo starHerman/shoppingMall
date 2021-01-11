@@ -27,7 +27,7 @@ const PaymentPage = ({ history }) => {
     <Container >
         <CheckoutSteps step1 step2  />
         <Row className="justify-content-center">
-            <Form onSubmit={submitHandler}>
+            <Form onSubmit={submitHandler} variant="flush">
                 <h1>Payment Method</h1>
                 <Form.Group>
                 <Form.Label as='legend'>Select Method</Form.Label>
