@@ -14,6 +14,7 @@ import UserDetailsPage from './pages/UserDetailsPage'
 import ShippingPage from './pages/ShippingPage'
 import PaymentPage from './pages/PaymentPage'
 import PlaceOrderPage from './pages/PlaceOrderPage'
+import OrderPage from './pages/OrderPage'
 function App() {
   return (
       <Router>
@@ -29,6 +30,7 @@ function App() {
             <Route path="/shipping" component={ShippingPage}></Route>
             <Route path="/payment" component={PaymentPage}></Route>
              <Route path="/placeorder" component={PlaceOrderPage}></Route>
+             <Route path="/order/:id" component={OrderPage}></Route>
           </Container>
         </main>
         <Footer/>
