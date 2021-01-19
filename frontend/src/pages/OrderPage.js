@@ -101,7 +101,7 @@ const OrderPage = ({match}) => {
                           />
                         </Col>
                         <Col>
-                          <Link to={`/product/${item.product}`}>
+                          <Link to={`/products/${item.productId}`}>
                             {item.name}
                           </Link>
                         </Col>

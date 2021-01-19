@@ -1,6 +1,6 @@
 const router=require("express").Router()
-const { userAuth,getUserProfile,userRegister,updateUserProfile } = require("../controller/userController")
-const { protect}=require("../middleware/authMiddleware")
+const { userAuth,getUserProfile,userRegister,updateUserProfile, getUsers,deleteUser } = require("../controller/userController")
+const { protect,isAdmin}=require("../middleware/authMiddleware")
 
 
 //desc  user login
@@ -17,12 +17,14 @@ router.post("/register",userRegister)
 //@api   /api/users/profile
 //@access GET  private
 router.get("/profile",protect,getUserProfile)
-
+router.delete("/:id",protect,isAdmin,deleteUser)
 //desc  update user profile
 //@api   PUT /api/users/profile
 //@access   private
 
 router.put("/profile",protect,updateUserProfile)
+
+router.get("/",protect,isAdmin,getUsers)
 
 
 

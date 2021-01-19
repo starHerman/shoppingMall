@@ -112,7 +112,7 @@ const ProductPage = ({history,match}) => {
             <Row mt={6}> 
                 <Col md={6}>
                     <h1>Product Reviews</h1>
-                    {product.reviews.length===0?<Message variant="danger" message="No Comments"></Message>:
+                    {product.reviews.length===0&&<Message variant="danger" message="No Comments"></Message>}
                         <ListGroup variant="flush">
                             {
                                 product.reviews.map(r=>(
@@ -163,7 +163,7 @@ const ProductPage = ({history,match}) => {
                                    You can <Link to="/login">Sign In</Link> to write a review</Alert>}
                             </ListGroup.Item>
                         </ListGroup>
-                    }
+                    
                 </Col>
             </Row>
             </>

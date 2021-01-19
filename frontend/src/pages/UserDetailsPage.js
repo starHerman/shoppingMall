@@ -27,7 +27,7 @@ const UserDetailsPage = ({location,history}) => {
             if(!userProfile.name){
                 dispatch(getUserDetails())
                 //  dispatch({type:USER_UPDATE_PROFILE_RESET})
-                dispatch(listMyOrders())
+                // dispatch(listMyOrders())
             }else{
                 // console.log(userProfile)
                 setName(userProfile.name)
@@ -35,6 +35,9 @@ const UserDetailsPage = ({location,history}) => {
             }
         }
     },[dispatch,history,userInfo,userProfile])
+    useEffect(() => {
+        dispatch(listMyOrders())
+    }, [])
     const loginHandler=(e)=>{
         e.preventDefault();
         setMessage("")

@@ -119,4 +119,38 @@ const updateUserProfile=async (req,res)=>{
     }
 }
 
-module.exports={userAuth,getUserProfile,userRegister,updateUserProfile}
+//@desc get all uses
+//@route  GET /api/uses
+//@access private and admin
+
+const getUsers=async(req,res)=>{
+    try {
+        const users=await User.find({})
+        res.json(users)
+    } catch (error) {
+        
+    }
+}
+
+
+//@desc delete user with id
+//@route  DELETE /api/uses/:id
+//@access private and admin
+
+const deleteUser=async(req,res)=>{
+    try {
+        const user=await User.findOne({_id:req.params.id})
+        if(user){
+            await user.remove()
+
+            res.json({message:"user removed"})
+        }
+        else{
+            throw new Error("User Not Found")
+        }
+    } catch (error) {
+        res.status(400).json(error.message)
+    }
+}
+
+module.exports={userAuth,getUserProfile,userRegister,updateUserProfile,getUsers,deleteUser}

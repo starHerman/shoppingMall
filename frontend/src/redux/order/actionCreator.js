@@ -2,6 +2,7 @@ import {ORDER_CREATE_REQUEST,ORDER_CREATE_SUCCESS,ORDER_CREATE_FAIL,
   ORDER_DETAILS_REQUEST,ORDER_DETAILS_SUCCESS,ORDER_DETAILS_FAIL, 
   ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_PAY_FAIL,
 ORDER_LIST_MY_SUCCESS,ORDER_LIST_MY_REQUEST,ORDER_LIST_MY_FAIL,ORDER_LIST_MY_RESET} from './actionType'
+import {cartClear} from '../cart/actionCreator'
 import axios from 'axios'
 import{userLogout} from '../user/actionCreator'
 
@@ -28,10 +29,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       type: ORDER_CREATE_SUCCESS,
       payload: data,
     })
-    // dispatch({
-    //   type: CART_CLEAR_ITEMS,
-    //   payload: data,
-    // })
+    dispatch(cartClear())
     // localStorage.removeItem('cartItems')
   } catch (error) {
     // const message =

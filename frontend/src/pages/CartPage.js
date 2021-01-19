@@ -87,6 +87,7 @@ const CartPage = ({history,match,location}) => {
                           <Button type="button" 
                           className="btn btn-block btn-dark"
                           onClick={checkoutHandler}
+                          disabled={cartItems.length===0}
                           >Proceed To Checkout</Button>
                       </ListGroup.Item>
                   </ListGroup>

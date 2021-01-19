@@ -4,7 +4,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {productListReducer,productDetailReducer,productReviewCreateReducer,productTopRatedReducer} from './product/reducer'
 import {cartReducer} from './cart/reducer'
 import {orderCreateReducer,orderDetailsReducer,orderPayReducer,orderListMyReducer} from './order/reducer'
-import {userLoginReducer, userRegisterReducer,userDetailsReducer,updateUserProfileReducer} from './user/reducer'
+import {userLoginReducer, userRegisterReducer,userDetailsReducer,updateUserProfileReducer,userListReducer,userDeleteReducer} from './user/reducer'
 import { fromPairs } from "lodash"
 const reducer=combineReducers({
     productList:productListReducer,
@@ -15,6 +15,8 @@ const reducer=combineReducers({
     userRegister:userRegisterReducer,
     userDetails:userDetailsReducer,
     userUpdateProfile:updateUserProfileReducer,
+    userList:userListReducer,
+    userDelete:userDeleteReducer,
     orderCreate:orderCreateReducer,
     orderDetails:orderDetailsReducer,
     orderPay:orderPayReducer,

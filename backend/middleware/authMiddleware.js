@@ -10,12 +10,23 @@ const protect=async (req,res,next)=>{
             next()
         }
         else{
-            throw new Error("invalid token")
+            throw new Error("user not authorized")
         }
     } catch (error) {
         res.status(400).send(error.message)
     }
 }
 
-
-module.exports={protect}
+const isAdmin=(req,res,next)=>{
+    try {
+        if(req.user&&req.user.isAdmin){
+            next()
+        }
+        else{
+            throw new Error("user not authorized or not as an admin user")
+        }
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+}
+module.exports={protect,isAdmin}

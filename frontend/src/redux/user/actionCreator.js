@@ -10,7 +10,10 @@ import { USER_LOGIN_REQUEST,
     USER_DETAILS_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
-    USER_UPDATE_PROFILE_FAIL } from "./actionType"
+    USER_UPDATE_PROFILE_FAIL,
+    USER_LIST_REQUEST,
+USER_LIST_FAIL,USER_LIST_SUCCESS,USER_LIST_RESET,
+USER_DELETE_REQUEST,USER_DELETE_FAIL,USER_DELETE_SUCCESS } from "./actionType"
 import axios from 'axios'
 export const userLogin=(email,password)=>{
     return async(dispatch)=>{
@@ -134,6 +137,75 @@ export const updateUserProfile=(user)=>{
     }
 }
 
+export const listUsers = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_LIST_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(`/api/users`, config)
+
+    dispatch({
+      type: USER_LIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    const message=error.response.data
+    if (message === 'jwt expired') {
+      dispatch(userLogout())
+    }
+    dispatch({
+      type: USER_LIST_FAIL,
+      payload: message,
+    })
+  }
+}
+
+
+export const deleteUser = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_DELETE_REQUEST,
+    })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.delete(`/api/users/${id}`, config)
+
+    dispatch({
+      type: USER_DELETE_SUCCESS,
+    })
+  } catch (error) {
+    const message=error.response.data
+    if (message === 'jwt expired') {
+      dispatch(userLogout())
+    }
+    dispatch({
+      type: USER_DELETE_FAIL,
+      payload: message,
+    })
+  }
+}
+
+
 
 export const userLogout=()=>{
     return (dispatch)=>{
@@ -141,5 +213,9 @@ export const userLogout=()=>{
         dispatch({
             type:USER_LOGOUT
         })
+        dispatch({
+            type:USER_LIST_RESET
+        })
     }
 }
+
