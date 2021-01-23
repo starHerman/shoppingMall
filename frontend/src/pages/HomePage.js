@@ -42,7 +42,7 @@ const HomePage = ({location}) => {
                             {
                                 [...Array(pages).keys()].map(x=>(
                                     <LinkContainer key={x+1} to={`/?pageNum=${x+1}`}>
-                                        <Pagination.Item  active={query.pageNum==x+1}>
+                                        <Pagination.Item  active={(query.pageNum||1)==x+1}>
                                                 {x+1}
                                             </Pagination.Item>
                                     </LinkContainer>
